@@ -1,3 +1,5 @@
+/* Use callback function to get the data via ajax request */
+
 'use strict';
 
 const url = 'https://www.random.org/integers/?num=1&min=-1&max=10&col=1&base=10&format=plain&rnd=new';
@@ -33,8 +35,13 @@ function printSum(sum) {
 }
 
 function init(resp) {
-    console.log('resp: ', parseInt(resp, 10));
+    if (resp === undefined) {
+        ajax(url, init);
+        return;
+    }
+
     let currNum = parseInt(resp, 10);
+    console.log('resp: ', currNum);
     if (currNum !== -1) {
         ajax(url, init);
         if (!Number.isNaN(currNum))
