@@ -1,22 +1,8 @@
-/*
-There is an integer HTTP service that returns a single integer between `-1` and `10`. 
-Your assignment is to write a function that calls this service until it returns `-1`. 
-The function should provide the accumulated value of adding previously returned integers. 
-Then call the function and print the result to the console.
-*/
-
-
-// There is an `ajax` service provided. It can be used both as Node-style callback or promise.
-// Example with callback: `ajax(url, callback);`
-// Example with promise:  `const promise = ajax(url);`
-
 'use strict';
 
 const url = 'https://www.random.org/integers/?num=1&min=-1&max=10&col=1&base=10&format=plain&rnd=new';
 const arrIntegers = [];
 
-// ===========================
-// Ajax helper code
 function ajax(url, callback) {
     if (typeof callback === 'function') {
         return makeRequest(
