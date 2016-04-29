@@ -24,8 +24,8 @@ function makeRequest(resolve, reject) {
     request.on('error', reject);
 }
 
-function getSum() {
-    return arrIntegers.reduce((prevItem, currItem) => {
+function getSum(arr) {
+    return arr.reduce((prevItem, currItem) => {
         return prevItem + currItem;
     });
 }
@@ -43,7 +43,7 @@ function init() {
                 arrIntegers.push(currNum);
                 init();
         } else {
-            printSum(getSum());
+            printSum(getSum(arrIntegers));
         }
     });
 }
