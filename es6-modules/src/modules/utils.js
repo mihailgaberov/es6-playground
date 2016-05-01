@@ -107,6 +107,21 @@ export function mergeArray(arr1, arr2, memoryEfficient = true) {
 }
 
 /**
+ * Merging arrays using .call method of js arrays
+ * @param arr1
+ * @param arr2
+ * @returns {*|Array.<T>}
+ */
+export function mergeArraysUsingCall(arr1, arr2) {
+	arr1.splice.call(arr1, arr1.length, 0, arr2);
+
+	// Return flattened array
+	return arr1.reduce((prev, curr) => {
+		return prev.concat(curr);
+	}, []);
+}
+
+/**
  * Converting NodeList to Arrays
  *
  * you run the document.querySelectorAll("p") function,
@@ -129,4 +144,41 @@ export function convertNodeListToArr(elements) {
  */
 export function shuffleArray(arr) {
 	return arr.sort(() => Math.random() - 0.5);
+}
+
+// https://hacks.mozilla.org/2015/01/from-mapreduce-to-javascript-functional-programming/
+/**
+ * reduce() changes the structure of the original array
+ * @param arr
+ */
+export function loopArrWithReduce(arr) {
+	if (arr.length === 0) {
+		throw new Error('Empty array');
+	}
+	if (typeof arr[0] === 'object') {
+		arr.reduce((prevItem, currItem, currIndex, array) => {
+			console.log('prevItem:', prevItem);
+			console.log('currItem:', currItem);
+			console.log('currItem val:', currItem.value);
+		}, {});
+	} else {
+		arr.reduce((prev, curr) => {
+			console.log('prev: ', prev);
+			console.log('curr: ', curr);
+		}, 0);
+	}
+}
+
+/**
+ * Map() preserves the structure of the original array and output a new one
+ * @param arr
+ */
+export function loopArrWithMap(arr) {
+	if (arr.toString() === '') {  // another way for checking if the array is empty using toString() builtin method
+		throw new Error('The passed array is empty');
+	}
+
+	arr.map((element) => {
+		console.log(element);
+	});
 }
