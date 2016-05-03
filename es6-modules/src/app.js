@@ -38,7 +38,12 @@ console.log('merging using call(): ', utils.mergeArraysUsingCall(arr3, arr4));
 // 8 Convert NodeList to Array
 let elements = document.querySelectorAll('p');
 console.log(utils.convertNodeListToArr(elements));
-console.log('Is empty array: ', utils.convertNodeListToArr(elements).toString() === '');
+
+// Checking for arrays
+console.log('Is empty array - returns "": ', utils.convertNodeListToArr(elements).toString() === '');
+
+// Checking for type array
+console.log('Is array - returns "[object Array]"', toString.call(utils.convertNodeListToArr(elements)));
 
 // 9 Shuffling array's elements
 let arrToShuffle = [1, 2, 3, 5, 6];
